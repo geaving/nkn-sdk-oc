@@ -70,8 +70,14 @@ Receive data from other clients
 Send a text message to other client
 
 ```objective-c
-[client sendText:[[NkngomobileStringArray alloc] initFromString:@"address"] data:@"Hello, I am client..." config:nil error:nil];
+NSError *error;
+[client sendText:[[NkngomobileStringArray alloc] initFromString:@"address"] data:@"Hello, I am client..." config:nil error:&error];
+if (error != nil) {
+    //do something
+    NSLog(@"send message fail: %@", error.description);
+}
 ```
+In any case, you should handle error exceptions, including the following examples
 
 ### Multiclient
 
